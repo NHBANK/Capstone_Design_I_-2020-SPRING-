@@ -6,13 +6,13 @@ const port=8000 // 포트 번호
 
 app.use(express.json()) // post방식에서 자동으로 bodyparsing
 
-app.get('/get', (req, res)=>{ 
+app.get('/', (req, res)=>{ 
     const test=url.parse(req.url) // url을 parsing
     const test2 = queryString.parse(test.query) // parsing된 url 뒤의 query들을 다시 parsing
     let result=test2
     result.stuno='20151548'
     result.email='imbrian618@gmail.com'
-    result.time=new Date().toLocaleString({timeZone:'Asia/Seoul'})
+    result.time=new Date().toLocaleString('ko-KR',{timeZone:'Asia/Seoul'})
     if(req.ip.substr(0,7)==='::ffff:')
         result.ip=req.ip.substr(7)
     else
@@ -26,7 +26,7 @@ app.post('/', (req, res)=>{
     let result = data
     result.stuno='20151548'
     result.email='imbrian618@gmail.com'
-    result.time=new Date().toLocaleString({timeZone:'Asia/Seoul'})
+    result.time=new Date().toLocaleString('ko-KR',{timeZone:'Asia/Seoul'})
     if(req.ip.substr(0,7)==='::ffff:')
         result.ip=req.ip.substr(7)
     else
